@@ -18,7 +18,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Spyglass
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -26,7 +26,13 @@ function Copyright(props) {
   );
 }
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#800020'
+    },
+  },
+});
 
 export function SignIn() {
   const handleSubmit = (event) => {
@@ -48,7 +54,7 @@ export function SignIn() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random)',
+            backgroundImage: 'url(https://img.freepik.com/premium-vector/sketch-astronaut-with-spyglass_156892-856.jpg)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -66,7 +72,7 @@ export function SignIn() {
               alignItems: 'center',
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <Avatar sx={{ m: 1, bgcolor: '#800020' }}>
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">

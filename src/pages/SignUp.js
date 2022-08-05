@@ -18,7 +18,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Spyglass
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -26,7 +26,13 @@ function Copyright(props) {
   );
 }
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#800020'
+    },
+  },
+});
 
 export function SignUp() {
   const handleSubmit = (event) => {
@@ -50,7 +56,7 @@ export function SignUp() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: '#800020' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
