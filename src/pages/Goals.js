@@ -1,7 +1,6 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
-import CameraIcon from '@mui/icons-material/PhotoCamera';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -15,7 +14,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { blueGrey, red } from '@mui/material/colors';
+import { useUserAuth } from "../context/UserAuthContext";
+import { useNavigate } from 'react-router-dom';
+
+import { useEffect, useState } from "react";
 
 function Copyright() {
   return (
@@ -41,14 +43,31 @@ const theme = createTheme({
 });
 
 export function Goals() {
+  const [goals, setGoals] = useState();
+  const { user, logOut } = useUserAuth();
+  const navigate = useNavigate();
+  const handleLogout = ()=> {
+    try{
+      logOut();
+      navigate("/signup");
+    }catch(err){
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    console.log(`Signed in as ${user.uid}`);
+  });
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <AppBar position="relative">
+      <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
             My Finacial Goals
           </Typography>
+          <Button color="inherit" onClick={handleLogout} >Logoff</Button>
         </Toolbar>
       </AppBar>
       <main>

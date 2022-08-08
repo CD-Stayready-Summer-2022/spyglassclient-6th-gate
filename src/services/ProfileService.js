@@ -21,7 +21,7 @@ export const getProfileById = (id) => {
 };
 
 export const addGoal = (id, goal) => {
-    return axios.put(`${PROFILE_BASE_API_URL}/${id}`, goal);
+    return axios.put(`${PROFILE_BASE_API_URL}/${id}`, goal, config);
 };
 
 export const deleteProfile = (id) => {
