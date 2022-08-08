@@ -12,6 +12,8 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { app } from "../firebase-config";
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 function Copyright(props) {
   return (
@@ -34,14 +36,20 @@ const theme = createTheme({
   },
 });
 
+const auth = getAuth();
+
 export function SignIn() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    signInWithEmailAndPassword(auth, data.get('email'), data.get('password'))
+      .then((response) => {
+        sessionStorage.setItem("authToken", response.user.accessToken);
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
