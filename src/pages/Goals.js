@@ -17,7 +17,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useUserAuth } from "../context/UserAuthContext";
 import { useNavigate } from 'react-router-dom';
 
-import { useEffect, useState } from "react";
+import { goals } from "../TestData.js";
+import { useEffect } from "react";
 
 function Copyright() {
   return (
@@ -32,8 +33,6 @@ function Copyright() {
   );
 }
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
 const theme = createTheme({
   palette: {
     primary: {
@@ -43,7 +42,6 @@ const theme = createTheme({
 });
 
 export function Goals() {
-  const [goals, setGoals] = useState();
   const { user, logOut } = useUserAuth();
   const navigate = useNavigate();
   const handleLogout = ()=> {
@@ -56,7 +54,7 @@ export function Goals() {
   };
 
   useEffect(() => {
-    console.log(`Signed in as ${user.uid}`);
+    console.log(goals);
   });
 
   return (
@@ -103,8 +101,8 @@ export function Goals() {
         <Container sx={{ py: 0 }} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
+            {goals.map((goal) => (
+              <Grid item key={goal.id} xs={12} sm={6} md={4}>
                 <Card
                   sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                 >
@@ -119,11 +117,10 @@ export function Goals() {
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading
+                      {goal.goalName}
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe the
-                      content.
+                      {goal.description}
                     </Typography>
                   </CardContent>
                   <CardActions>
