@@ -87,7 +87,15 @@ export function Goals() {
             >
               Goals List
             </Typography>
-            
+            <Button
+              href='/add'
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Add Goal
+            </Button>
             <Stack
               sx={{ pt: 0 }}
               direction="row"
@@ -125,7 +133,7 @@ export function Goals() {
                   </CardContent>
                   <CardActions>
                     <Button size="small">View</Button>
-                    <Button size="small">Edit</Button>
+                    <Button href={`/update/${goal.id}`} size="small">Edit</Button>
                   </CardActions>
                 </Card>
               </Grid>
